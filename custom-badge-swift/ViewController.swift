@@ -46,7 +46,7 @@ class ViewController: UIViewController {
       toItem:badge2,
       attribute: NSLayoutAttribute.Top,
       multiplier:1,
-      constant:0))
+      constant:2))
     
     view.addConstraint(NSLayoutConstraint(item: badge1,
       attribute: NSLayoutAttribute.CenterX,
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
       toItem:badge2,
       attribute: NSLayoutAttribute.Trailing,
       multiplier:1,
-      constant:0))
+      constant:-2))
     
 //    var constraints = NSLayoutConstraint.constraintsWithVisualFormat("[badge2][badge1]",
 //      options: nil, metrics: nil,
