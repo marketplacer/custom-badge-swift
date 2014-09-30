@@ -20,6 +20,8 @@ class CustomBadge: UIView {
   private let badgeScaleFactor: CGFloat
   private let badgeShining:Bool
   
+  private let initialSize: CGFloat = 25
+  
   // I recommend to use the allocator customBadgeWithString
   init(badgeString: String, withStringColor stringColor:UIColor, withInsetColor insetColor:UIColor,
     withBadgeFrame badgeFrameYesNo:Bool, withBadgeFrameColor frameColor:UIColor,
@@ -33,7 +35,7 @@ class CustomBadge: UIView {
     self.badgeShining = shining
     self.badgeFrame = badgeFrameYesNo
       
-    super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+    super.init(frame: CGRect(x: 0, y: 0, width: initialSize, height: initialSize))
       
     setTranslatesAutoresizingMaskIntoConstraints(false)
     
@@ -69,12 +71,12 @@ class CustomBadge: UIView {
     
     if countElements(badgeText) >= 2 {
       let flexSpace:CGFloat = CGFloat(countElements(badgeText))
-      let rectWidth:CGFloat = 25 + (stringSize.width + flexSpace)
-      let rectHeight:CGFloat = 25
+      let rectWidth:CGFloat = initialSize + (stringSize.width + flexSpace)
+      let rectHeight:CGFloat = initialSize
       
       size = CGSize(width: rectWidth * badgeScaleFactor, height: rectHeight * badgeScaleFactor)
     } else {
-      size = CGSize(width: 25 * badgeScaleFactor, height: 25 * badgeScaleFactor)
+      size = CGSize(width: initialSize * badgeScaleFactor, height: initialSize * badgeScaleFactor)
     }
 
     return size
