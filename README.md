@@ -22,6 +22,7 @@ https://github.com/ckteebe/CustomBadge
 
 
 *** License & Copyright ***
+
 Created by Sascha Paulus www.spaulus.com on 04/2011. Version 2.0
 This tiny class can be used for free in private and commercial applications.
 Please feel free to modify, extend or distribution this class. 
