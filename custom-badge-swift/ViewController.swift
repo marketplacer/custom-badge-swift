@@ -4,8 +4,19 @@
 //  This code is based on Objective-C version created by Sascha Paulus www.spaulus.com.
 //  https://github.com/ckteebe/CustomBadge
 //
-//  Converted to Swift by Evgenii Neumerzhitckii on 30/09/2014.
-//  Copyright (c) 2014 The Exchange Group Pty Ltd. All rights reserved.
+// *** License & Copyright ***
+//
+// Created by Sascha Paulus www.spaulus.com on 04/2011. Version 2.0
+// This tiny class can be used for free in private and commercial applications.
+// Please feel free to modify, extend or distribution this class.
+// If you modify it: Please send me your modified version of the class.
+// Please do not sell the source code solely and keep this text in your copyright section. Thanks.
+//
+// If you have any questions please feel free to contact me (open@spaulus.com).
+//
+// -------------------------
+// Converted to Swift by Evgenii Neumerzhitckii on 30/09/2014.
+// Copyright (c) 2014 The Exchange Group Pty Ltd. All rights reserved.
 //
 
 import UIKit
