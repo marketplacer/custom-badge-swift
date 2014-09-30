@@ -14,7 +14,7 @@ class CustomBadge: UIView {
   private let badgeFrame: Bool
   private let badgeFrameColor: UIColor
   private let badgeInsetColor: UIColor
-  private let badgeCornerRoundness = 0.4
+  private let badgeCornerRoundness: CGFloat = 0.4
   private let badgeScaleFactor: CGFloat
   private let badgeShining:Bool
 
@@ -94,5 +94,30 @@ class CustomBadge: UIView {
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, retValue.width, retValue.height)
     self.badgeText = badgeString
     setNeedsDisplay()
+  }
+  
+  // Draws the Badge with Quartz
+  func drawRoundedRectWithContext(context: CGContextRef, withRect rect:CGRect)
+  {
+    CGContextSaveGState(context);
+    
+    let radius = CGRectGetMaxY(rect) * self.badgeCornerRoundness
+    let puffer = CGRectGetMaxY(rect) * 0.10
+    let maxX = CGRectGetMaxX(rect) - puffer
+    let maxY = CGRectGetMaxY(rect) - puffer
+    let minX = CGRectGetMinX(rect) + puffer
+    let minY = CGRectGetMinY(rect) + puffer
+    let pi = CGFloat(M_PI)
+      
+    CGContextBeginPath(context)
+    CGContextSetFillColorWithColor(context, badgeInsetColor.CGColor)
+    CGContextAddArc(context, maxX - radius, minY + radius, radius, pi + (pi / 2), 0, 0)
+    CGContextAddArc(context, maxX - radius, maxY - radius, radius, 0, pi / 2, 0)
+    CGContextAddArc(context, minX + radius, maxY - radius, radius, pi / 2, pi, 0)
+    CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi + pi / 2, 0)
+    CGContextSetShadowWithColor(context, CGSizeMake(1.0,1.0), 3, UIColor.blackColor().CGColor)
+    CGContextFillPath(context)
+    
+    CGContextRestoreGState(context)
   }
 }
