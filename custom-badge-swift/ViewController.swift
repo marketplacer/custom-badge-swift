@@ -26,7 +26,7 @@ class ViewController: UIViewController {
       withShining: true)
     
     let badge2 = CustomBadge.customBadgeWithString("CustomBadge",
-      withStringColor: UIColor.yellowColor(),
+      withStringColor: UIColor.blackColor(),
       withInsetColor: UIColor.greenColor(),
       withBadgeFrame: true,
       withBadgeFrameColor: UIColor.yellowColor(),

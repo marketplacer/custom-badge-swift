@@ -226,8 +226,6 @@ class CustomBadge: UIView {
     }
   
     if !badgeText.isEmpty {
-      badgeTextColor.set()
-    
       var sizeOfFont = 13.5 * badgeScaleFactor
     
       if countElements(badgeText) < 2 {
@@ -242,7 +240,10 @@ class CustomBadge: UIView {
         (rect.size.width / 2 - textSize.width / 2),
         (rect.size.height / 2 - textSize.height / 2))
     
-      nsString.drawAtPoint(point, withAttributes: [NSFontAttributeName: textFont])
+      nsString.drawAtPoint(point, withAttributes: [
+        NSForegroundColorAttributeName: badgeTextColor,
+        NSFontAttributeName: textFont]
+      )
     }
   }
 }
