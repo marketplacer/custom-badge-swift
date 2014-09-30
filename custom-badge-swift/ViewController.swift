@@ -1,8 +1,10 @@
 //
 //  ViewController.swift
-//  custom-badge-swift
 //
-//  Created by Evgenii Neumerzhitckii on 30/09/2014.
+//  This code is based on Objective-C version created by Sascha Paulus www.spaulus.com.
+//  https://github.com/ckteebe/CustomBadge
+//
+//  Converted to Swift by Evgenii Neumerzhitckii on 30/09/2014.
 //  Copyright (c) 2014 The Exchange Group Pty Ltd. All rights reserved.
 //
 
@@ -38,8 +40,9 @@ class ViewController: UIViewController {
     view.addSubview(badge1)
     
     // Position badges
+    // ---------------
     
-    
+    // Badge 1
     view.addConstraint(NSLayoutConstraint(item: badge1,
       attribute: NSLayoutAttribute.CenterY,
       relatedBy: NSLayoutRelation.Equal,
@@ -55,24 +58,11 @@ class ViewController: UIViewController {
       attribute: NSLayoutAttribute.Trailing,
       multiplier:1,
       constant:-2))
-    
-//    var constraints = NSLayoutConstraint.constraintsWithVisualFormat("[badge2][badge1]",
-//      options: nil, metrics: nil,
-//      views: ["badge1": badge1, "badge2": badge2])
-//    view.addConstraints(constraints)
-//    
-//    constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[badge2][badge1]",
-//      options: nil, metrics: nil,
-//      views: ["badge1": badge1, "badge2": badge2])
-//    view.addConstraints(constraints)
-    
+
   
+    // Badge 2
     addCenterXConstraints(badge2)
-    var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[badge2]-0@20-|",
-      options: nil, metrics: nil,
-      views: ["badge2": badge2])
-    
-    view.addConstraints(constraints)
+    addCenterYConstraints(badge2)
   }
   
   private func addCenterXConstraints(chilView: UIView) {
@@ -81,6 +71,16 @@ class ViewController: UIViewController {
       relatedBy: NSLayoutRelation.Equal,
       toItem:chilView,
       attribute: NSLayoutAttribute.CenterX,
+      multiplier:1,
+      constant:0))
+  }
+  
+  private func addCenterYConstraints(chilView: UIView) {
+    view.addConstraint(NSLayoutConstraint(item: view,
+      attribute: NSLayoutAttribute.CenterY,
+      relatedBy: NSLayoutRelation.Equal,
+      toItem:chilView,
+      attribute: NSLayoutAttribute.CenterY,
       multiplier:1,
       constant:0))
   }

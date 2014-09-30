@@ -1,8 +1,10 @@
 //
 //  CustomBadge.swift
-//  custom-badge-swift
 //
-//  Created by Evgenii Neumerzhitckii on 30/09/2014.
+//  This code is based on Objective-C version created by Sascha Paulus www.spaulus.com.
+//  https://github.com/ckteebe/CustomBadge
+//
+//  Converted to Swift by Evgenii Neumerzhitckii on 30/09/2014.
 //  Copyright (c) 2014 The Exchange Group Pty Ltd. All rights reserved.
 //
 
