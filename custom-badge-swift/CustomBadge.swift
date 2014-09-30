@@ -11,30 +11,57 @@ import UIKit
 class CustomBadge: UIView {
   private var badgeText: String
   private let badgeTextColor: UIColor
-  private let badgeFrame = true
+  private let badgeFrame: Bool
   private let badgeFrameColor: UIColor
   private let badgeInsetColor: UIColor
   private let badgeCornerRoundness = 0.4
   private let badgeScaleFactor: CGFloat
   private let badgeShining:Bool
 
+  // I recommend to use the allocator customBadgeWithString
   init(badgeString: String, withScale scale: CGFloat, withShining shining: Bool) {
-    badgeText = badgeString
-    badgeTextColor = UIColor.whiteColor()
-    badgeFrameColor = UIColor.whiteColor()
-    badgeInsetColor = UIColor.redColor()
-    badgeScaleFactor = scale
-    badgeShining = shining
+    
+    self.badgeText = badgeString
+    self.badgeTextColor = UIColor.whiteColor()
+    self.badgeFrameColor = UIColor.whiteColor()
+    self.badgeInsetColor = UIColor.redColor()
+    self.badgeScaleFactor = scale
+    self.badgeShining = shining
+    self.badgeFrame = true
     
     super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
     
     contentScaleFactor = UIScreen.mainScreen().scale
     backgroundColor = UIColor.clearColor()
+  }
+  
+  // I recommend to use the allocator customBadgeWithString
+  init(badgeString: String, withStringColor stringColor:UIColor, withInsetColor insetColor:UIColor,
+    withBadgeFrame badgeFrameYesNo:Bool, withBadgeFrameColor frameColor:UIColor,
+    withScale scale:CGFloat, withShining shining:Bool) {
+      
+    self.badgeText = badgeString
+    self.badgeTextColor = stringColor
+    self.badgeFrameColor = frameColor
+    self.badgeInsetColor = insetColor
+    self.badgeScaleFactor = scale
+    self.badgeShining = shining
+    self.badgeFrame = badgeFrameYesNo
+      
+    super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
     
+    contentScaleFactor = UIScreen.mainScreen().scale
+    backgroundColor = UIColor.clearColor()
   }
 
   required init(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  // Creates a Badge with a given Text
+  class func customBadgeWithString(badgeString: String) -> CustomBadge
+  {
+    return CustomBadge(badgeString: badgeString, withScale: 1, withShining: true)
   }
   
   // Use this method if you want to change the badge text after the first rendering
