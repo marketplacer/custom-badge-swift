@@ -1,6 +1,6 @@
 # Overview
 
-iOS badge indicator written in Swift. Supports autolayout ib iOS 7 and 8.
+iOS badge indicator written in Swift. Supports autolayout, iOS 7, 8.
 
 <img src='https://dl.dropboxusercontent.com/u/11143285/bikeexchange/github_images/custom-badge-screenshot.png' width='200' alt='Custom Badge Swift'>
 
