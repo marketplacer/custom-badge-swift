@@ -18,6 +18,7 @@ class CustomBadge: UIView {
   private let badgeScaleFactor: CGFloat
   private let badgeShining:Bool
 
+
   // I recommend to use the allocator customBadgeWithString
   init(badgeString: String, withScale scale: CGFloat, withShining shining: Bool) {
     
@@ -64,6 +65,11 @@ class CustomBadge: UIView {
 
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  // Padding between viewedge and the border like
+  private func padding(forRect rect: CGRect) -> CGFloat {
+    return CGRectGetMaxY(rect) * 0.10
   }
   
   // Creates a Badge with a given Text
@@ -122,13 +128,19 @@ class CustomBadge: UIView {
     return size
   }
   
+  override func alignmentRectInsets() -> UIEdgeInsets {
+    let puffer = padding(forRect: bounds)
+    return UIEdgeInsets(top: puffer, left: puffer, bottom: puffer, right: puffer)
+  }
+  
   // Draws the Badge with Quartz
   private func drawRoundedRectWithContext(context: CGContextRef, withRect rect:CGRect)
   {
     CGContextSaveGState(context);
     
     let radius = CGRectGetMaxY(rect) * badgeCornerRoundness
-    let puffer = CGRectGetMaxY(rect) * 0.10
+    let puffer = padding(forRect: rect)
+    
     let maxX = CGRectGetMaxX(rect) - puffer
     let maxY = CGRectGetMaxY(rect) - puffer
     let minX = CGRectGetMinX(rect) + puffer
@@ -153,7 +165,7 @@ class CustomBadge: UIView {
     CGContextSaveGState(context)
     
     let radius = CGRectGetMaxY(rect) * badgeCornerRoundness
-    let puffer = CGRectGetMaxY(rect) * 0.10
+    let puffer = padding(forRect: rect)
     let maxX = CGRectGetMaxX(rect) - puffer
     let maxY = CGRectGetMaxY(rect) - puffer
     let minX = CGRectGetMinX(rect) + puffer
@@ -186,7 +198,7 @@ class CustomBadge: UIView {
   // Draws the Badge Frame with Quartz
   private func drawFrameWithContext(context: CGContextRef, withRect rect:CGRect) {
     let radius = CGRectGetMaxY(rect) * badgeCornerRoundness
-    let puffer = CGRectGetMaxY(rect) * 0.10
+    let puffer = padding(forRect: rect)
     let maxX = CGRectGetMaxX(rect) - puffer
     let maxY = CGRectGetMaxY(rect) - puffer
     let minX = CGRectGetMinX(rect) + puffer

@@ -39,19 +39,36 @@ class ViewController: UIViewController {
     
     // Position badges
     
-    var constraints = NSLayoutConstraint.constraintsWithVisualFormat("[badge2][badge1]",
-      options: nil, metrics: nil,
-      views: ["badge1": badge1, "badge2": badge2])
-    view.addConstraints(constraints)
     
-    constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[badge2][badge1]",
-      options: nil, metrics: nil,
-      views: ["badge1": badge1, "badge2": badge2])
-    view.addConstraints(constraints)
+    view.addConstraint(NSLayoutConstraint(item: badge1,
+      attribute: NSLayoutAttribute.CenterY,
+      relatedBy: NSLayoutRelation.Equal,
+      toItem:badge2,
+      attribute: NSLayoutAttribute.Top,
+      multiplier:1,
+      constant:0))
+    
+    view.addConstraint(NSLayoutConstraint(item: badge1,
+      attribute: NSLayoutAttribute.CenterX,
+      relatedBy: NSLayoutRelation.Equal,
+      toItem:badge2,
+      attribute: NSLayoutAttribute.Trailing,
+      multiplier:1,
+      constant:0))
+    
+//    var constraints = NSLayoutConstraint.constraintsWithVisualFormat("[badge2][badge1]",
+//      options: nil, metrics: nil,
+//      views: ["badge1": badge1, "badge2": badge2])
+//    view.addConstraints(constraints)
+//    
+//    constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[badge2][badge1]",
+//      options: nil, metrics: nil,
+//      views: ["badge1": badge1, "badge2": badge2])
+//    view.addConstraints(constraints)
     
   
     addCenterXConstraints(badge2)
-    constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[badge2]-0@20-|",
+    var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[badge2]-0@20-|",
       options: nil, metrics: nil,
       views: ["badge2": badge2])
     
