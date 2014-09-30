@@ -31,9 +31,12 @@ class CustomBadge: UIView {
     
     super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
     
+    setTranslatesAutoresizingMaskIntoConstraints(false)
+
     contentScaleFactor = UIScreen.mainScreen().scale
     backgroundColor = UIColor.clearColor()
-    autoBadgeSizeWithString(badgeString)
+//    autoBadgeSizeWithString(badgeString)
+    invalidateIntrinsicContentSize()
   }
   
   // I recommend to use the allocator customBadgeWithString
@@ -50,10 +53,13 @@ class CustomBadge: UIView {
     self.badgeFrame = badgeFrameYesNo
       
     super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+      
+    setTranslatesAutoresizingMaskIntoConstraints(false)
     
     contentScaleFactor = UIScreen.mainScreen().scale
     backgroundColor = UIColor.clearColor()
-    autoBadgeSizeWithString(badgeString)
+//    autoBadgeSizeWithString(badgeString)
+    invalidateIntrinsicContentSize()
   }
 
   required init(coder aDecoder: NSCoder) {
@@ -96,6 +102,24 @@ class CustomBadge: UIView {
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, retValue.width, retValue.height)
     self.badgeText = badgeString
     setNeedsDisplay()
+  }
+  
+  override func intrinsicContentSize() -> CGSize {
+    var size: CGSize
+    let stringSize = (badgeText as NSString).sizeWithAttributes(
+      [NSFontAttributeName:UIFont.boldSystemFontOfSize(12)])
+    
+    if countElements(badgeText) >= 2 {
+      let flexSpace:CGFloat = CGFloat(countElements(badgeText))
+      let rectWidth:CGFloat = 25 + (stringSize.width + flexSpace)
+      let rectHeight:CGFloat = 25
+      
+      size = CGSize(width: rectWidth * badgeScaleFactor, height: rectHeight * badgeScaleFactor)
+    } else {
+      size = CGSize(width: 25 * badgeScaleFactor, height: 25 * badgeScaleFactor)
+    }
+
+    return size
   }
   
   // Draws the Badge with Quartz

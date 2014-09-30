@@ -17,7 +17,7 @@ class ViewController: UIViewController {
   }
   
   private func createBadges() {
-    let customBadge2 = CustomBadge.customBadgeWithString("CustomBadge",
+    let badge2 = CustomBadge.customBadgeWithString("CustomBadge",
       withStringColor: UIColor.blackColor(),
       withInsetColor: UIColor.greenColor(),
       withBadgeFrame: true,
@@ -25,15 +25,28 @@ class ViewController: UIViewController {
       withScale: 1.5,
       withShining: true)
     
-    // Set frames
-    customBadge2.frame = CGRect(
-      origin: CGPoint(
-        x: view.frame.size.width / 2 - customBadge2.frame.size.width / 2,
-        y: 110),
-      size: customBadge2.frame.size)
-    
     // Add Badges to View
-    view.addSubview(customBadge2)
+    view.addSubview(badge2)
+  
+    addCenterXConstraints(badge2)
+    let constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[badge2]-0@20-|",
+      options: nil, metrics: nil,
+      views: ["badge2":badge2 ])
+    
+    view.addConstraints(constraints)
+    
+//    view.addConstraints(constraints)
+    
+  }
+  
+  private func addCenterXConstraints(chilView: UIView) {
+    view.addConstraint(NSLayoutConstraint(item: view,
+      attribute: NSLayoutAttribute.CenterX,
+      relatedBy: NSLayoutRelation.Equal,
+      toItem:chilView,
+      attribute: NSLayoutAttribute.CenterX,
+      multiplier:1,
+      constant:0))
   }
 }
 
