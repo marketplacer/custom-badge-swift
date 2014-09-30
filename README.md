@@ -2,6 +2,8 @@
 
 iOS badge indicator written in Swift. Supports autolayout ib iOS 7 and 8.
 
+<img src='https://dl.dropboxusercontent.com/u/11143285/bikeexchange/github_images/custom-badge-screenshot.png' width='200' alt='Custom Badge Swift'>
+
 ## Usage
 
     let badgeView = CustomBadge.customBadgeWithString("2",
@@ -12,8 +14,6 @@ iOS badge indicator written in Swift. Supports autolayout ib iOS 7 and 8.
       withScale: 1.0,
       withShining: true)
 
-
-<img src='https://dl.dropboxusercontent.com/u/11143285/bikeexchange/github_images/custom-badge-screenshot.png' width='150' alt='Custom Badge Swift'>
 
 ## Original version
 
