@@ -211,6 +211,8 @@ class CustomBadge: UIView {
       let textFont = UIFont.boldSystemFontOfSize(sizeOfFont)
       let nsString = badgeText as NSString
       let textSize = nsString.sizeWithAttributes([NSFontAttributeName: textFont])
+      
+      println("text size \(textSize)")
 
       let point = CGPointMake(
         (rect.size.width / 2 - textSize.width / 2),
