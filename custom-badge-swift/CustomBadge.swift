@@ -33,6 +33,7 @@ class CustomBadge: UIView {
     
     contentScaleFactor = UIScreen.mainScreen().scale
     backgroundColor = UIColor.clearColor()
+    autoBadgeSizeWithString(badgeString)
   }
   
   // I recommend to use the allocator customBadgeWithString
@@ -52,6 +53,7 @@ class CustomBadge: UIView {
     
     contentScaleFactor = UIScreen.mainScreen().scale
     backgroundColor = UIColor.clearColor()
+    autoBadgeSizeWithString(badgeString)
   }
 
   required init(coder aDecoder: NSCoder) {
@@ -212,8 +214,6 @@ class CustomBadge: UIView {
       let nsString = badgeText as NSString
       let textSize = nsString.sizeWithAttributes([NSFontAttributeName: textFont])
       
-      println("text size \(textSize)")
-
       let point = CGPointMake(
         (rect.size.width / 2 - textSize.width / 2),
         (rect.size.height / 2 - textSize.height / 2))

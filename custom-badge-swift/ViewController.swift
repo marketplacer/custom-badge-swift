@@ -25,10 +25,6 @@ class ViewController: UIViewController {
       withScale: 1.5,
       withShining: true)
     
-    
-    println("badge size: \(customBadge2.frame.size)")
-    
-    
     // Set frames
     customBadge2.frame = CGRect(
       origin: CGPoint(
