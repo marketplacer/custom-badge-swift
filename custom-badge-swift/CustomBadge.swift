@@ -64,6 +64,17 @@ class CustomBadge: UIView {
     return CustomBadge(badgeString: badgeString, withScale: 1, withShining: true)
   }
   
+  // Creates a Badge with a given Text, Text Color, Inset Color, Frame (YES/NO) and Frame Color
+  class func customBadgeWithString(badgeString: String, withStringColor stringColor:UIColor,
+    withInsetColor insetColor:UIColor,
+    withBadgeFrame badgeFrameYesNo:Bool, withBadgeFrameColor frameColor:UIColor,
+    withScale scale:CGFloat, withShining shining:Bool) -> CustomBadge
+  {
+    return CustomBadge(badgeString: badgeString, withStringColor: stringColor,
+      withInsetColor: insetColor, withBadgeFrame: badgeFrameYesNo,
+      withBadgeFrameColor: frameColor, withScale: scale, withShining: shining)
+  }
+  
   // Use this method if you want to change the badge text after the first rendering
   func autoBadgeSizeWithString(badgeString: String)
   {
