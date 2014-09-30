@@ -13,6 +13,7 @@
 		2B2D483D19DA568300706B82 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D483C19DA568300706B82 /* Images.xcassets */; };
 		2B2D484019DA568300706B82 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D483E19DA568300706B82 /* LaunchScreen.xib */; };
 		2B2D484C19DA568300706B82 /* custom_badge_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D484B19DA568300706B82 /* custom_badge_swiftTests.swift */; };
+		2B2D485619DA56DD00706B82 /* CustomBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D485519DA56DD00706B82 /* CustomBadge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		2B2D484519DA568300706B82 /* custom-badge-swiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "custom-badge-swiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B2D484A19DA568300706B82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B2D484B19DA568300706B82 /* custom_badge_swiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = custom_badge_swiftTests.swift; sourceTree = "<group>"; };
+		2B2D485519DA56DD00706B82 /* CustomBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		2B2D483219DA568300706B82 /* custom-badge-swift */ = {
 			isa = PBXGroup;
 			children = (
+				2B2D485519DA56DD00706B82 /* CustomBadge.swift */,
 				2B2D483519DA568300706B82 /* AppDelegate.swift */,
 				2B2D483719DA568300706B82 /* ViewController.swift */,
 				2B2D483919DA568300706B82 /* Main.storyboard */,
@@ -214,6 +217,7 @@
 			files = (
 				2B2D483819DA568300706B82 /* ViewController.swift in Sources */,
 				2B2D483619DA568300706B82 /* AppDelegate.swift in Sources */,
+				2B2D485619DA56DD00706B82 /* CustomBadge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
