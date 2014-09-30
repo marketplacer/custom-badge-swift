@@ -80,7 +80,7 @@ class CustomBadge: UIView {
   {
     var retValue: CGSize
     let stringSize = (badgeString as NSString).sizeWithAttributes(
-      [badgeString:UIFont.boldSystemFontOfSize(12)])
+      [NSFontAttributeName:UIFont.boldSystemFontOfSize(12)])
     
     if countElements(badgeString) >= 2 {
       let flexSpace:CGFloat = CGFloat(countElements(badgeString))
@@ -97,11 +97,11 @@ class CustomBadge: UIView {
   }
   
   // Draws the Badge with Quartz
-  func drawRoundedRectWithContext(context: CGContextRef, withRect rect:CGRect)
+  private func drawRoundedRectWithContext(context: CGContextRef, withRect rect:CGRect)
   {
     CGContextSaveGState(context);
     
-    let radius = CGRectGetMaxY(rect) * self.badgeCornerRoundness
+    let radius = CGRectGetMaxY(rect) * badgeCornerRoundness
     let puffer = CGRectGetMaxY(rect) * 0.10
     let maxX = CGRectGetMaxX(rect) - puffer
     let maxY = CGRectGetMaxY(rect) - puffer
@@ -119,5 +119,104 @@ class CustomBadge: UIView {
     CGContextFillPath(context)
     
     CGContextRestoreGState(context)
+  }
+  
+  // Draws the Badge Shine with Quartz
+  private func drawShineWithContext(context: CGContextRef, withRect rect:CGRect)
+  {
+    CGContextSaveGState(context)
+    
+    let radius = CGRectGetMaxY(rect) * badgeCornerRoundness
+    let puffer = CGRectGetMaxY(rect) * 0.10
+    let maxX = CGRectGetMaxX(rect) - puffer
+    let maxY = CGRectGetMaxY(rect) - puffer
+    let minX = CGRectGetMinX(rect) + puffer
+    let minY = CGRectGetMinY(rect) + puffer
+    let pi = CGFloat(M_PI)
+    
+    CGContextBeginPath(context)
+    CGContextAddArc(context, maxX - radius, minY + radius, radius, pi + (pi / 2), 0, 0)
+    CGContextAddArc(context, maxX - radius, maxY - radius, radius, 0, pi / 2, 0)
+    CGContextAddArc(context, minX + radius, maxY - radius, radius, pi / 2, pi, 0)
+    CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi + pi / 2, 0)
+    CGContextClip(context);
+    
+    let num_locations: size_t = 2
+    let locations:[CGFloat] = [0.0, 0.4]
+    let components:[CGFloat] = [0.92, 0.92, 0.92, 1.0, 0.82, 0.82, 0.82, 0.4]
+    
+    let cspace = CGColorSpaceCreateDeviceRGB()
+    let gradient = CGGradientCreateWithColorComponents (cspace, components,
+      locations, num_locations)
+    
+    let sPoint = CGPoint()
+    let ePoint = CGPoint(x: 0, y: maxY)
+   
+    CGContextDrawLinearGradient (context, gradient, sPoint, ePoint, 0)
+    
+    CGContextRestoreGState(context)
+  }
+  
+  // Draws the Badge Frame with Quartz
+  private func drawFrameWithContext(context: CGContextRef, withRect rect:CGRect) {
+    let radius = CGRectGetMaxY(rect) * badgeCornerRoundness
+    let puffer = CGRectGetMaxY(rect) * 0.10
+    let maxX = CGRectGetMaxX(rect) - puffer
+    let maxY = CGRectGetMaxY(rect) - puffer
+    let minX = CGRectGetMinX(rect) + puffer
+    let minY = CGRectGetMinY(rect) + puffer
+    let pi = CGFloat(M_PI)
+  
+    CGContextBeginPath(context)
+    
+    var lineSize: CGFloat = 2
+    
+    if badgeScaleFactor > 1 {
+      lineSize += badgeScaleFactor * 0.25
+    }
+    
+    CGContextSetLineWidth(context, lineSize)
+    CGContextSetStrokeColorWithColor(context, badgeFrameColor.CGColor)
+    CGContextAddArc(context, maxX - radius, minY + radius, radius, pi + (pi / 2), 0, 0)
+    CGContextAddArc(context, maxX - radius, maxY - radius, radius, 0, pi / 2, 0)
+    CGContextAddArc(context, minX + radius, maxY - radius, radius, pi / 2, pi, 0)
+    CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi + pi / 2, 0)
+    
+    CGContextClosePath(context)
+    CGContextStrokePath(context) // Clear the current path
+  }
+  
+  override func drawRect(rect: CGRect) {
+    let context = UIGraphicsGetCurrentContext()
+   
+    drawRoundedRectWithContext(context, withRect: rect)
+  
+    if badgeShining {
+      drawShineWithContext(context, withRect: rect)
+    }
+  
+    if badgeFrame  {
+      drawFrameWithContext(context, withRect: rect)
+    }
+  
+    if !badgeText.isEmpty {
+      badgeTextColor.set()
+    
+      var sizeOfFont = 13.5 * badgeScaleFactor
+    
+      if countElements(badgeText) < 2 {
+        sizeOfFont += sizeOfFont * 0.20
+      }
+    
+      let textFont = UIFont.boldSystemFontOfSize(sizeOfFont)
+      let nsString = badgeText as NSString
+      let textSize = nsString.sizeWithAttributes([NSFontAttributeName: textFont])
+
+      let point = CGPointMake(
+        (rect.size.width / 2 - textSize.width / 2),
+        (rect.size.height / 2 - textSize.height / 2))
+    
+      nsString.drawAtPoint(point, withAttributes: [NSFontAttributeName: textFont])
+    }
   }
 }
