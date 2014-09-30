@@ -1,6 +1,6 @@
 # Overview
 
-iOS badge indicator written in Swift.
+iOS badge indicator written in Swift. Supports autolayout ib iOS 7 and 8.
 
 ## Usage
 
